@@ -1,0 +1,16 @@
+<%# Heading and title
+
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%# Display message if exists
+
+<%# messages() %>
+
+
+<%# Inventory items grid
+<% if (grid) { %>
+
