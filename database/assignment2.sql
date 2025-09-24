@@ -38,5 +38,9 @@ FROM inventory
 WHERE classification_name = 'Sport';
 -- Task 6: Update all records in the inventory table to add "/vehicles" to the file path
 UPDATE inventory
-SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
-    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/')
+WHERE inv_image NOT LIKE '%/vehicles/%';
+
+UPDATE inventory
+SET inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/')
+WHERE inv_thumbnail NOT LIKE '%/vehicles/%';
