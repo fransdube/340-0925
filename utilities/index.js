@@ -36,7 +36,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="/inv/detail/'+ vehicle.inv_id
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="/' + vehicle.inv_thumbnail
+      + 'details"><img src="' + Util.fixBrokenPaths(vehicle.inv_thumbnail)
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -68,7 +68,7 @@ Util.buildDetailGrid = async function(data){
     const vehicle = data[0]
     grid = '<div id="detail-display" class="detail-grid">'
     grid += '<div class="detail-img">'
-    grid += '<img src="/' + vehicle.inv_image
+    grid += '<img src="' + Util.fixBrokenPaths(vehicle.inv_image)
     +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
     +' on CSE Motors" />'
     grid += '</div>'
@@ -88,6 +88,13 @@ Util.buildDetailGrid = async function(data){
     grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
   }
   return grid
+}
+
+/* ************************************
+* Fix broken paths
+* ************************************ */
+Util.fixBrokenPaths = function(path) {
+  return path.replace(/vehicles\/vehicles/g, "vehicles");
 }
 
 module.exports = Util
