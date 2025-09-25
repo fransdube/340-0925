@@ -97,4 +97,9 @@ Util.fixBrokenPaths = function(path) {
   return path.replace(/vehicles\/vehicles/g, "vehicles");
 }
 
+/* ****************************************
+* Middleware to handle errors
+* *************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
 module.exports = Util
