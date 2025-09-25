@@ -245,3 +245,64 @@ footer {
     width: 48%;
   }
 }
+
+/* Login View Styles */
+#loginForm {
+  max-width: 400px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #2c3e50; /* Dark blue-grey background */
+  color: #ecf0f1; /* Light grey text */
+  border-radius: 8px;
+}
+
+#loginForm fieldset {
+  border: none;
+}
+
+#loginForm label {
+  display: block;
+  margin-bottom: .5em;
+  font-size: 1.1em;
+}
+
+#loginForm input[type="email"],
+#loginForm input[type="password"] {
+  width: 100%;
+  padding: .8em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
+  border: 1px solid #7f8c8d; /* Grey border */
+  background-color: #ecf0f1;
+  font-size: 1em;
+}
+
+#loginForm button {
+  width: 100%;
+  padding: 1em;
+  border: none;
+  border-radius: 4px;
+  background-color: #3498db; /* Blue button */
+  color: white;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#loginForm button:hover {
+  background-color: #2980b9;
+}
+
+#loginForm + p {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#loginForm + p a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+#loginForm + p a:hover {
+  text-decoration: underline;
+}
