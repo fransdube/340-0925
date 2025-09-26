@@ -361,3 +361,107 @@ footer {
   margin-top: -1em;
   margin-bottom: 1.5em;
 }
+
+/* Add Classification and Add Inventory Form Styles */
+#addClassificationForm,
+#addInventoryForm {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#addClassificationForm fieldset,
+#addInventoryForm fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#addClassificationForm label,
+#addInventoryForm label {
+  display: block;
+  margin-bottom: .5em;
+  font-weight: bold;
+  color: #333;
+}
+
+#addClassificationForm input[type="text"],
+#addInventoryForm input[type="text"],
+#addInventoryForm input[type="number"],
+#addInventoryForm textarea,
+#addInventoryForm select {
+  width: 100%;
+  padding: .8em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 1em;
+}
+
+#addClassificationForm p,
+#addInventoryForm p {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: -1em;
+    margin-bottom: 1.5em;
+}
+
+#addClassificationForm button,
+#addInventoryForm button {
+  width: 100%;
+  padding: 1em;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3; /* Darker blue */
+  color: white;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#addClassificationForm button:hover,
+#addInventoryForm button:hover {
+  background-color: #004494; /* Even darker blue */
+}
+
+/* Error Message Styles */
+.notice {
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border: 1px solid #d9534f; /* Red border */
+  background-color: #f2dede; /* Light red background */
+  color: #a94442; /* Dark red text */
+  border-radius: 4px;
+}
+
+.notice li {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+/* Management View Styles */
+.management-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.management-link {
+  display: inline-block;
+  padding: 1em;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.management-link:hover {
+  background-color: #0056b3;
+}
