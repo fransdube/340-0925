@@ -4,6 +4,104 @@ const utilities = require("../utilities/")
 const invCont = {}
 
 /* ***************************
+ *  Build management view
+ * ************************** */
+invCont.buildManagementView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Build add classification view
+ * ************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const formData = req.session.formData || {}
+  delete req.session.formData
+
+  res.render("./inventory/add-classification", {
+    title: "Add New Classification",
+    nav,
+    errors: null,
+    classification_name: formData.classification_name,
+  })
+}
+
+/* ****************************************
+*  Process new classification
+* *************************************** */
+invCont.addClassification = async function (req, res) {
+  const { classification_name } = req.body
+  const addResult = await invModel.addClassification(classification_name)
+
+  if (addResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you have added ${classification_name} to the classifications.`
+    )
+    res.redirect("/inv")
+  } else {
+    req.flash("notice", "Sorry, the addition failed.")
+    req.session.formData = { classification_name }
+    res.redirect("/inv/add-classification")
+  }
+}
+
+/* ***************************
+ *  Build add inventory view
+ * ************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const formData = req.session.formData || {}
+  delete req.session.formData
+  let classificationList = await utilities.buildClassificationList(formData.classification_id)
+
+  res.render("./inventory/add-inventory", {
+    title: "Add New Inventory",
+    nav,
+    classificationList,
+    errors: null,
+    ...formData,
+  })
+}
+
+/* ****************************************
+*  Process new inventory
+* *************************************** */
+invCont.addInventory = async function (req, res) {
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+
+  const addResult = await invModel.addInventory(
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+
+  if (addResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you have added ${inv_make} ${inv_model} to the inventory.`
+    )
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, the addition failed.")
+    req.session.formData = req.body
+    res.redirect("/inv/add-inventory")
+  }
+}
+
+/* ***************************
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
