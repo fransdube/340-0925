@@ -30,7 +30,6 @@ router.post(
 // Deliver account view
 router.get(
   "/",
-  utilities.checkJWTToken,
   utilities.handleErrors(accountController.buildAccountView)
   )
 
