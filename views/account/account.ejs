@@ -1,0 +1,17 @@
+<%# The h1 title and messages() statement are required. %>
+<% if (title) { %>
+    <h1><%- title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+<%- messages() %>
+
+<%# This is the welcome message. %>
+<h2>Welcome <%- locals.accountData.account_firstname %></h2>
+<p>You're logged in.</p>
+
+<%# If the account type is Employee or Admin, this link will be displayed. %>
+<% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
+    <h3>Inventory Management</h3>
+    <p><a href="/inv/">Manage Inventory</a></p>
+<% } %>
