@@ -30,6 +30,7 @@ router.post(
 // Deliver account view
 router.get(
   "/",
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountView)
   )
 
