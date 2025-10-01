@@ -94,21 +94,6 @@ async function addInventory(
 }
 
 /* ***************************
- *  Get inventory item by id
- * ************************** */
-async function getInventoryById(inventory_id) {
-  try {
-    const data = await pool.query(
-      `SELECT * FROM public.inventory WHERE inv_id = $1`,
-      [inventory_id]
-    )
-    return data.rows[0]
-  } catch (error) {
-    console.error("getinventorybyid error " + error)
-  }
-}
-
-/* ***************************
  *  Update Inventory Data
  * ************************** */
 async function updateInventory(
@@ -146,4 +131,4 @@ async function updateInventory(
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, addClassification, addInventory, getInventoryById, updateInventory};
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, addClassification, addInventory, updateInventory};
