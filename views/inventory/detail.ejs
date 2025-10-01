@@ -1,3 +1,47 @@
-<h1><%= title %></h1>
+<% if (vehicle) { %>
+    <div id="detail-display" class="detail-grid">
+        <div class="detail-img">
+            <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %> on CSE Motors" />
+        </div>
+        <div id="detail-data" class="detail-data">
+            <h2><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h2>
+            <ul>
+                <li><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></li>
+                <li><strong>Description:</strong> <%= vehicle.inv_description %></li>
+                <li><strong>Color:</strong> <%= vehicle.inv_color %></li>
+                <li><strong>Miles:</strong> <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %></li>
+            </ul>
+        </div>
+    </div>
 
-<%- grid %>
+    <div id="reviews-section">
+        <h2>Customer Reviews</h2>
+        <% if (locals.loggedin) { %>
+            <div id="review-form">
+                <h3>Leave a Review</h3>
+                <form action="/review/add" method="post">
+                    <textarea name="review_text" required></textarea>
+                    <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+        <% } else { %>
+            <p>Please <a href="/account/login">log in</a> to leave a review.</p>
+        <% } %>
+
+        <% if (reviews && reviews.length > 0) { %>
+            <ul id="reviews-list">
+                <% reviews.forEach(review => { %>
+                    <li>
+                        <p>"<%= review.review_text %>"</p>
+                        <p><strong><%= review.account_firstname %> <%= review.account_lastname.charAt(0) %>.</strong> on <%= new Date(review.review_date).toLocaleDateString() %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Be the first to review this vehicle!</p>
+        <% } %>
+    </div>
+<% } else { %>
+    <p class="notice">Sorry, no matching vehicle could be found.</p>
+<% } %>

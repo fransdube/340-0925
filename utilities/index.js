@@ -83,36 +83,6 @@ Util.buildClassificationGrid = async function(data){
 }
 
 
-/* **************************************
-* Build the detail view HTML
-* ************************************ */
-Util.buildDetailGrid = async function(data){
-  let grid = ''
-  if(data.length > 0){
-    const vehicle = data[0]
-    grid = '<div id="detail-display" class="detail-grid">'
-    grid += '<div class="detail-img">'
-    grid += '<img src="' + Util.fixBrokenPaths(vehicle.inv_image)
-    +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
-    +' on CSE Motors" />'
-    grid += '</div>'
-    grid += '<div id="detail-data" class="detail-data">'
-    grid += '<h2>' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
-    grid += '<ul>'
-    grid += '<li><strong>Price:</strong> $'
-    + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</li>'
-    grid += '<li><strong>Description:</strong> ' + vehicle.inv_description + '</li>'
-    grid += '<li><strong>Color:</strong> ' + vehicle.inv_color + '</li>'
-    grid += '<li><strong>Miles:</strong> '
-    + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</li>'
-    grid += '</ul>'
-    grid += '</div>'
-    grid += '</div>'
-  } else {
-    grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
-  }
-  return grid
-}
 
 /* ************************************
 * Fix broken paths
