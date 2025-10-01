@@ -17,6 +17,9 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 // Route to get inventory for AJAX Route
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Route to build the edit inventory view
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
@@ -41,5 +44,13 @@ router.post(
     classificationValidate.checkInventoryData,
     utilities.handleErrors(invController.addInventory)
 );
+
+// Process the update inventory data
+router.post(
+    "/update",
+    classificationValidate.inventoryRules(),
+    classificationValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory)
+)
 
 module.exports = router;
