@@ -8,10 +8,12 @@ const invCont = {}
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildClassificationList()
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
     errors: null,
+    classificationSelect,
   })
 }
 
@@ -163,6 +165,19 @@ invCont.triggerError = async function (req, res, next) {
     throw new Error("Intentional error")
   } catch (error) {
     next(error)
+  }
+}
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData.length > 0) {
+    return res.json(invData)
+  } else {
+    return res.json([])
   }
 }
 

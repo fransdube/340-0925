@@ -14,6 +14,9 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // Route to build add inventory view
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
+// Route to get inventory for AJAX Route
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
