@@ -5,9 +5,9 @@
 /* ***********************
  * Require Statements
  *************************/
+const env = require("dotenv").config()
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
@@ -16,7 +16,7 @@ const accountRoute = require("./routes/accountRoute")
 const reviewRoute = require("./routes/reviewRoute")
 const utilities = require("./utilities/")
 const session = require("express-session")
-const pool = require('./database/')
+const { pool } = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 
